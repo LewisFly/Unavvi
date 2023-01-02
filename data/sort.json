@@ -1,0 +1,78 @@
+sort = [
+  {
+    "sortId": 0,
+    "sortName": "产品资讯",
+    "order": 0
+  },
+  {
+    "sortId": 1,
+    "sortName": "因吹斯汀",
+    "order": 1
+  },
+  {
+    "sortId": 2,
+    "sortName": "设计参考",
+    "order": 2
+  },
+  {
+    "sortId": 3,
+    "sortName": "效率工具",
+    "order": 3
+  },
+  {
+    "sortId": 4,
+    "sortName": "文档工具",
+    "order": 4
+  },
+  {
+    "sortId": 5,
+    "sortName": "前端工具",
+    "order": 5
+  },
+  {
+    "sortId": 6,
+    "sortName": "图片生成",
+    "order": 6
+  },
+  {
+    "sortId": 7,
+    "sortName": "图片处理",
+    "order": 7
+  },
+  {
+    "sortId": 8,
+    "sortName": "图标素材",
+    "order": 8
+  },
+  {
+    "sortId": 9,
+    "sortName": "插画素材",
+    "order": 9
+  },
+  {
+    "sortId": 10,
+    "sortName": "图片素材",
+    "order": 10
+  },
+  {
+    "sortId": 11,
+    "sortName": "影音素材",
+    "order": 11,
+    "svg": '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" width="24" height="24" color="#cccccc"><defs><style>.cls-6374f543b67f094e4896c5da-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><rect class="cls-6374f543b67f094e4896c5da-1" x="1.5" y="4.36" width="15.27" height="15.27"></rect><path class="cls-6374f543b67f094e4896c5da-1" d="M22.5,12a6.67,6.67,0,0,1-5.73,6.61V5.39A6.67,6.67,0,0,1,22.5,12Z"></path><circle class="cls-6374f543b67f094e4896c5da-1" cx="6.27" cy="14.86" r="0.95"></circle><circle class="cls-6374f543b67f094e4896c5da-1" cx="12" cy="13.91" r="0.95"></circle><polyline class="cls-6374f543b67f094e4896c5da-1" points="12.96 13.91 12.96 8.18 7.23 9.14 7.23 14.86"></polyline></svg>'
+  },
+  {
+    "sortId": 12,
+    "sortName": "字体字形",
+    "order": 12
+  },
+  {
+    "sortId": 13,
+    "sortName": "颜色搭配",
+    "order": 13
+  },
+  {
+    "sortId": 14,
+    "sortName": "博客网站",
+    "order": 14
+  }
+];

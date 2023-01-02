@@ -30,16 +30,6 @@
 			  s.parentNode.insertBefore(hm, s);
 			})();
 		</script>
-		<!--<script type="text/javascript">
-			//Inspectlet
-			(function() {
-				window.__insp = window.__insp || [];
-				__insp.push(['wid', 554418314]);
-				var ldinsp = function(){
-				if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=554418314&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
-				setTimeout(ldinsp, 0);
-			})();
-		</script>-->
 	</head>
 	<body>
 		<header class="center">
@@ -48,47 +38,52 @@
 		<div id="container">
 			<ul v-for="module in content" class="sort">
 				<h2 class="border center hidden">{{module.sortName}}</h2>
+				<div class="border center fill-card"></div>
+				<div class="border center fill-card"></div>
+				<div class="border center fill-card"></div>
+				<div class="border center fill-card"></div>
 				<h2 class="center fill-h2 loading">
-					<div class="sortName">产品</div>
+					<div class="sortName">产品资讯</div>
 				</h2>
 				<div class="sort-container">
-					<a v-for="card in module.website" :href="card.address" class="border center card hidden" :onclick="card.statistics" target="_blank">
+					<a v-for="card in module.websites" :href="card.address" class="border center card hidden" :onclick="card.statistics" @mouseenter="focus($event)" @mouseleave="blur()" target="_blank">
 						<div class="border center website-logo-con">
 							<div class="website-logo-color" :style="{background: card.color}"></div>
 							<div class="initial">{{pinyinUtil.getFirstLetter(card.name.substr(0, 1).toUpperCase())}}</div>
 						</div>
-						<div class="wesite-con">
+						<div class="website-con">
 							<h3 class="website-name">{{card.name}}</h3>
 							<span class="website-intro">{{card.intro}}</span>
 						</div>
+						<div class="website-bg"></div>
 						<div v-if="card.preview" class="border center website-preview hidden">
 							<img :src="card.preview" />
 						</div>
 					</a>
 					<a class="center card fill-card loading">
 						<div class="center website-logo-con"></div>
-						<div class="wesite-con">
+						<div class="website-con">
 							<div class="website-name"></div>
 							<div class="website-intro"></div>
 						</div>
 					</a>
 					<a class="center card fill-card loading">
 						<div class="center website-logo-con"></div>
-						<div class="wesite-con">
+						<div class="website-con">
 							<div class="website-name"></div>
 							<div class="website-intro"></div>
 						</div>
 					</a>
 					<a class="center card fill-card loading">
 						<div class="center website-logo-con"></div>
-						<div class="wesite-con">
+						<div class="website-con">
 							<div class="website-name"></div>
 							<div class="website-intro"></div>
 						</div>
 					</a>
 					<a class="center card fill-card loading">
 						<div class="center website-logo-con"></div>
-						<div class="wesite-con">
+						<div class="website-con">
 							<div class="website-name"></div>
 							<div class="website-intro"></div>
 						</div>
@@ -103,104 +98,61 @@
 			</a>
 		</footer>
 		<!--<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.15.0/dist/av-min.js"></script>-->
-		<script src="lib/av-min.js" type="text/javascript"></script>
+		<!--<script src="lib/av-min.js" type="text/javascript"></script>-->
+		<script src="data/website.json" type="text/javascript"></script>
+		<script src="data/sort.json" type="text/javascript"></script>
 		<script type="text/javascript">
-			AV.init({
-			  appId: "w1SrgFW4P79IslBeTgsNLFgE-MdYXbMMI",
-			  appKey: "8EC8lX7TCdu3LxlGgG8JHcG2"
-			});
-
-			var Website = AV.Object.extend("Website"),
-				Sort = AV.Object.extend("Sort");
-			var website = new AV.Query("Website"),
-				sort = new AV.Query("Sort");
-			var sorts = [];
 
 			/* 获取分类 */
-			sort.ascending("weight").find().then(function(sortRes) {
-				for(var i = 0; i < sortRes.length; i++) {
-					var newSort = {
-						sortId: sortRes[i].id,
-						sortName: sortRes[i].attributes.sortName
-					}
-					sorts.push(newSort);
-				}
-			});
+			var sort = JSON.parse(JSON.stringify(sort));
+			for(var i = 0;i < sort.length; i++) {
+				sort[i].websites = [];
+			}
 
 			/* 获取网页 */
-			var webRes = [];
-			website.include("sort.sortName").limit(1000);
-  			website.notEqualTo("show", 0).ascending("subsort").addAscending("name").find().then(function(webRes) {
-				var content = [], websites = [];
-				for(var i = 0; i < webRes.length; i++) {
-					/* 获取分类 */
-					var webAttr = webRes[i].attributes;
-					var web = { webId: webRes[i].id,
-								name: webAttr.name,
-								address: webAttr.address,
-								intro: webAttr.intro,
-								preview: webAttr.preview,
-								statistics: "_hmt.push(['_trackEvent', 'website', 'click', '" + webAttr.address + "'])",
-								color: webAttr.color };
-					sortName = webAttr.sort.attributes.sortName;
-					sortId = webAttr.sort.id;
-					if(i == 0) {
-						websites.push(web);
-						var newModule = {
-							sortName: sortName,
-							sortId: sortId,
-							website: websites
-						};
-						content.push(newModule);
-						websites = [];
-					}
-					else {
-						for(var j = 0; j < content.length; j++) {
-							if(content[j].sortId == sortId) {
-								content[j].website.push(web);
-								break;
-							}
-							else if(j == content.length - 1) {
-								websites.push(web);
-								var newModule = {
-									sortName: sortName,
-									sortId: sortId,
-									website: websites
-								};
-								content.push(newModule);
-								websites = [];
-								break;
-							}
+			var website = JSON.parse(JSON.stringify(website));
+			for(var i = 0; i < website.length; i++) {
+				if(website[i].show) {
+					website[i].statistics = "_hmt.push(['_trackEvent', 'website', 'click', '" + website[i].address + "'])";
+					for(var j = 0; j < sort.length; j++) {
+						if(website[i].sortId == sort[j].sortId) {
+							sort[j].websites.push(website[i]);
 						}
 					}
 				}
-
-				/* 分类排序 */
-				var conLen = content.length;
-				for(var i = 0; i < sorts.length; i++) {
-					for(var j = 0; j < conLen; j++) {
-						if(sorts[i].sortId.toString() == content[j].sortId.toString()) {
-							content.push(content[j]);
-						}
-					}
-				}
-				content.splice(0, conLen);
+			}
 				
-				/* 渲染 */
-				var container = new Vue({
-					el: "#container",
-					data: {
-						content: content
+			/* 渲染 */
+			var container = new Vue({
+				el: "#container",
+				data: {
+					content: sort
+				},
+				mounted: function() {
+					/* 首次渲染完成 */
+					this.$nextTick(function () {
+						$(".loading").removeClass("loading");
+						$(".hidden").removeClass("hidden");
+					})
+				},
+				methods: {
+					focus(e) {
+						$("header").addClass("blur");
+						$("footer").addClass("blur");
+						$("h2").addClass("blur");
+						$(".card").addClass("blur");
+						e.currentTarget.className = "border center card";
 					},
-					mounted: function() {
-						/* 首次渲染完成 */
-						this.$nextTick(function () {
-							$(".loading").removeClass("loading");
-							$(".hidden").removeClass("hidden");
-						})
+					blur() {
+						$("header").removeClass("blur");
+						$("footer").removeClass("blur");
+						$("h2").removeClass("blur");
+						$(".card").removeClass("blur");
 					}
-				});
+				}
 			});
+			
+
 		</script>
 	</body>
 </html>
