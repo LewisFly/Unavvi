@@ -436,7 +436,7 @@ website = [
     "name": "coDesign",
     "id": 46,
     "preview": "https://s2.loli.net/2022/04/09/f14PdNTgoz3pFnr.png",
-    "show": 1,
+    "show": 0,
     "sortId": 3
   },
   {
@@ -576,7 +576,7 @@ website = [
     "name": "WOOBRO",
     "id": 63,
     "preview": "https://s2.loli.net/2022/04/09/QtOBp7fnARsPHD1.png",
-    "show": 1,
+    "show": 0,
     "sortId": 9
   },
   {
@@ -818,5 +818,25 @@ website = [
     "preview": "",
     "show": 1,
     "sortId": 12
+  },
+  {
+    "address": "https://www.virscan.org/",
+    "color": "#29abe2",
+    "intro": "检测文件安全性工具",
+    "name": "VirScan",
+    "id": 91,
+    "preview": "",
+    "show": 1,
+    "sortId": 3
+  },
+  {
+    "address": "https://httpie.io/app",
+    "color": "#73dc8c",
+    "intro": "接口调试工具",
+    "name": "HTTPie",
+    "id": 92,
+    "preview": "",
+    "show": 1,
+    "sortId": 5
   }
 ]
