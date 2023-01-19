@@ -808,5 +808,15 @@ website = [
     "preview": "https://s2.loli.net/2022/05/02/NclVoGuFKseXfqD.png",
     "show": 1,
     "sortId": 2
+  },
+  {
+    "address": "https://atelier-anchor.com/typefaces/smiley-sans/",
+    "color": "#ffdd00",
+    "intro": "免费可商用字体",
+    "name": "得意黑斜体",
+    "id": 90,
+    "preview": "",
+    "show": 1,
+    "sortId": 12
   }
 ]

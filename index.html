@@ -137,11 +137,13 @@
 				},
 				methods: {
 					focus(e) {
-						$("header").addClass("blur");
-						$("footer").addClass("blur");
-						$("h2").addClass("blur");
-						$(".card").addClass("blur");
-						e.currentTarget.className = "border center card";
+						if(!/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+							$("header").addClass("blur");
+							$("footer").addClass("blur");
+							$("h2").addClass("blur");
+							$(".card").addClass("blur");
+							e.currentTarget.className = "border center card";
+						}
 					},
 					blur() {
 						$("header").removeClass("blur");

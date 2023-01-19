@@ -85,15 +85,16 @@ h2 {
 	margin: 18px 10px;
 	transition: all .4s ease-out;
 }
-.card:hover {
-	transform: translateY(-4px);
-}
-.card:hover .website-preview {
-	visibility: visible;
-	bottom: 80px;
-	opacity: 1;
-
-	filter: blur(0);
+@media (any-hover: hover) {
+	.card:hover {
+		transform: translateY(-4px);
+	}
+	.card:hover .website-preview {
+		visibility: visible;
+		bottom: 80px;
+		opacity: 1;	
+		filter: blur(0);
+	}
 }
 .hidden {
 	display: none;
